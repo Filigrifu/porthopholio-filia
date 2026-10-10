@@ -1,0 +1,1155 @@
+/* ==========================================================================
+   Cosmic Aurora Portfolio - CSS Stylesheet
+   Designed for Vibe Coding Exercise
+   ========================================================================== */
+
+/* 1. Google Fonts: Roboto Mono (Utama) & Outfit (Modern Sans Fallback for Clother) */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* Optional Local Font declaration for 'Clother' if provided */
+@font-face {
+  font-family: 'Clother';
+  src: local('Clother'), local('Clother-Regular'), local('Outfit');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Design Tokens & CSS Variables */
+:root {
+  /* Color System */
+  --bg-deep-space: #07021b;
+  --bg-nebula-purple: #140533;
+  --aurora-cyan: #00f2fe;
+  --aurora-blue: #4facfe;
+  --aurora-magenta: #e024c3;
+  --aurora-purple: #9b51e0;
+  
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.72);
+  --text-dimmed: rgba(255, 255, 255, 0.45);
+  --glow-white: #ffffff;
+
+  /* Typography */
+  --font-main: 'Roboto Mono', monospace;
+  --font-body: 'Clother', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing & Layout */
+  --header-height: 85px;
+  --container-padding: clamp(1.5rem, 5vw, 4.5rem);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 3. Base Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-deep-space);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. Cosmic Aurora & Nebula Starry Night Background */
+.cosmic-background-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--bg-deep-space);
+}
+
+/* High-res Nebula Starry Night Background Image from Project Files */
+.cosmic-nebula-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    /* User's Project Background: background1.png */
+    url('../images/background-nebula.png'),
+    url('../images/background1.png'),
+    url('../images/longbackground.png'),
+    /* Cosmic fallback gradients */
+    radial-gradient(circle at 50% 30%, rgba(155, 81, 224, 0.25) 0%, transparent 60%),
+    linear-gradient(180deg, #07021b 0%, #0d032e 50%, #060117 100%);
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+/* Cosmic Aurora Ribbons from Project Files */
+.aurora-ribbons-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora-ribbon {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+/* 1. Pita Aurora Kiri Utama (Melengkung dari Kiri Atas Tepat di Belakang Logo Fili & Menggantung Sesuai Referensi) */
+.aurora-ribbon-left {
+  top: -2%;
+  left: 2%;
+  width: clamp(420px, 40vw, 650px);
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 28px rgba(0, 242, 254, 0.55));
+  opacity: 0.98;
+  animation: auroraFloatLeft 12s ease-in-out infinite alternate;
+}
+
+/* 2. Pita Aurora Kiri Tepi (Lapisan Tambahan di Ujung Tepi Kiri Layar Sesuai Referensi) */
+.aurora-ribbon-left-edge {
+  top: -3%;
+  left: -11%;
+  width: clamp(340px, 33vw, 520px);
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 24px rgba(0, 242, 254, 0.45));
+  opacity: 0.92;
+  transform: rotate(-3deg);
+  animation: auroraFloatLeftEdge 14s ease-in-out infinite alternate;
+}
+
+/* 3. Pita Aurora Kanan (Menggantung dari Sudut Kanan Atas di Belakang Navbar & Melengkung ke Bawah Sisi Kanan Sesuai Referensi) */
+.aurora-ribbon-right {
+  top: -3%;
+  right: -1%;
+  width: clamp(480px, 45vw, 760px);
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 32px rgba(0, 242, 254, 0.55));
+  opacity: 0.98;
+  animation: auroraFloatRight 13s ease-in-out infinite alternate;
+}
+
+@keyframes auroraFloatLeft {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.94;
+  }
+  50% {
+    transform: translateY(8px) scale(1.02) rotate(-0.7deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-6px) scale(0.99) rotate(0.6deg);
+    opacity: 0.92;
+  }
+}
+
+@keyframes auroraFloatLeftEdge {
+  0% {
+    transform: rotate(-3deg) translateY(0) scale(1);
+    opacity: 0.88;
+  }
+  50% {
+    transform: rotate(-1.5deg) translateY(10px) scale(1.02);
+    opacity: 0.95;
+  }
+  100% {
+    transform: rotate(-4deg) translateY(-6px) scale(0.98);
+    opacity: 0.86;
+  }
+}
+
+@keyframes auroraFloatRight {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.94;
+  }
+  50% {
+    transform: translateY(10px) scale(1.02) rotate(0.8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-8px) scale(0.98) rotate(-0.6deg);
+    opacity: 0.92;
+  }
+}
+
+/* Dynamic HTML5 Canvas for Twinkling Starfield */
+#starfield-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Subtle Cosmic Vignette Overlay */
+.cosmic-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: radial-gradient(circle at center, transparent 40%, rgba(5, 1, 20, 0.45) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* 5. Header & Transparent Desktop Horizontal Navigation */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 var(--container-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: transparent; /* Navigation bar transparan */
+  transition: background var(--transition-smooth), backdrop-filter var(--transition-smooth), border-color var(--transition-smooth), height var(--transition-smooth);
+}
+
+/* Ketika di-scroll ke bawah: transparan dengan sedikit glassmorphism untuk keterbacaan */
+.site-header.scrolled {
+  background: rgba(7, 2, 27, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  height: calc(var(--header-height) - 10px);
+}
+
+/* Logo "Fili" */
+.logo {
+  font-family: var(--font-main);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  display: inline-flex;
+  align-items: center;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transition: text-shadow var(--transition-fast), transform var(--transition-fast);
+  user-select: none;
+}
+
+.logo:hover {
+  text-shadow: 0 0 16px var(--glow-white), 0 0 28px rgba(0, 242, 254, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Desktop Horizontal Navigation */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  padding: 0.4rem 0.2rem;
+  position: relative;
+  transition: color var(--transition-fast), text-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Hover Effect */
+.nav-link:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 18px rgba(255, 255, 255, 0.4);
+}
+
+/* Menu Aktif Glow Efek #ffffff (Requirement Khusus) */
+.nav-link.active {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 
+    0 0 8px #ffffff,
+    0 0 16px #ffffff,
+    0 0 26px rgba(255, 255, 255, 0.9),
+    0 0 38px rgba(255, 255, 255, 0.55);
+}
+
+/* Mobile Hamburger Toggle (Tersembunyi di Desktop) */
+.mobile-nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1100;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin: 5px auto;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease-in-out;
+}
+
+/* 6. Bagian Pertama Website (Hero Section "WELCOME") */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: calc(var(--header-height) + 2rem) var(--container-padding) 4rem;
+  z-index: 10;
+}
+
+.hero-content {
+  max-width: 800px;
+  animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Title "WELCOME" Sesuai Referensi */
+.hero-title {
+  font-family: var(--font-main);
+  font-size: clamp(3.8rem, 9.5vw, 7.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 3px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 25px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(0, 242, 254, 0.2);
+  margin-bottom: 0.8rem;
+  user-select: none;
+}
+
+/* Subtitle "Fili's Portpholio" */
+.hero-subtitle {
+  font-family: var(--font-main);
+  font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Scroll Down Prompt Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: var(--container-padding);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  color: var(--text-dimmed);
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  animation: floatBounce 2.5s infinite ease-in-out;
+}
+
+.scroll-indicator:hover {
+  color: var(--text-primary);
+}
+
+.scroll-indicator-icon {
+  width: 18px;
+  height: 28px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-indicator-icon::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 0 6px #ffffff;
+  animation: scrollDot 1.8s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   7. About Section (Sesuai Referensi Visual)
+   ========================================================================== */
+.about-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--header-height) + 2rem) var(--container-padding) 6rem;
+  position: relative;
+  z-index: 10;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* Kotak Avatar Putih (White Square Sesuai Referensi) */
+.about-avatar-box {
+  width: clamp(220px, 25vw, 340px);
+  height: clamp(220px, 25vw, 340px);
+  background-color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Teks Profil Sisi Kanan */
+.about-text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 650px;
+}
+
+.about-name {
+  font-family: var(--font-main);
+  font-size: clamp(3.5rem, 7.5vw, 5.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+  user-select: none;
+}
+
+.about-bio {
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 2.3vw, 1.95rem);
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1.65;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   8. Projects Section - Cards Carousel Sesuai Referensi
+   ========================================================================== */
+.projects-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--header-height) + 1.5rem) var(--container-padding) 4.5rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Track Scrollable Carousel */
+.projects-carousel {
+  display: flex;
+  gap: clamp(1.5rem, 2.8vw, 2.75rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 1.5rem 0.5rem 1.5rem;
+  width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.projects-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Project Card */
+.project-card {
+  flex: 0 0 clamp(230px, 21.5vw, 280px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-smooth), filter var(--transition-smooth);
+  cursor: pointer;
+  user-select: none;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-card:hover .project-card-image {
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(0, 242, 254, 0.45);
+}
+
+/* Kotak Gambar Persegi Panjang Putih (Sesuai Referensi) */
+.project-card-image {
+  width: 100%;
+  aspect-ratio: 3.2 / 4.4;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Informasi di Bawah Kartu */
+.project-card-info {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.project-title {
+  font-family: var(--font-main);
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+.project-subtitle {
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.3px;
+}
+
+.project-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Tombol Navigasi Carousel */
+.carousel-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 25;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(7, 2, 27, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transition: all var(--transition-smooth);
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.45);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-btn-prev {
+  left: -24px;
+}
+
+.carousel-btn-next {
+  right: -24px;
+}
+
+/* Titik Indikator Pagination Carousel */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 2rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.carousel-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+/* ==========================================================================
+   9. Journey Section - Vertical Scroll Timeline Sesuai Referensi
+   ========================================================================== */
+.journey-section {
+  min-height: 100vh;
+  padding: calc(var(--header-height) + 4rem) var(--container-padding) 8rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.journey-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  position: relative;
+}
+
+/* Garis Timeline Utama di Sisi Kiri */
+.journey-timeline-line {
+  width: 2.5px;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(255, 255, 255, 0.8) 60%, 
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 242, 254, 0.35);
+  flex-shrink: 0;
+  border-radius: 2px;
+  margin-top: 1.5rem;
+}
+
+/* Konten Daftar Milestone */
+.journey-content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4.5rem, 8vw, 7.5rem);
+  flex: 1;
+}
+
+.journey-milestone {
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+}
+
+.milestone-period {
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.35rem;
+}
+
+.milestone-title {
+  font-family: var(--font-main);
+  font-size: clamp(2.1rem, 3.8vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+}
+
+.milestone-institute {
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.milestone-desc {
+  font-family: var(--font-body);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.65;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+/* Sublist Proyek / Cabang Vertikal Indented */
+.journey-sublist-wrapper {
+  margin-top: 3.5rem;
+  margin-left: clamp(2rem, 7vw, 6.5rem);
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
+}
+
+.journey-sublist-line {
+  width: 1.5px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.journey-sublist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.85rem;
+}
+
+.sublist-item {
+  font-family: var(--font-main);
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+  transition: color var(--transition-fast), transform var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.sublist-item:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #ffffff, 0 0 18px rgba(0, 242, 254, 0.5);
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   10. Contact Section - Sesuai Referensi Visual & Wireframe
+   ========================================================================== */
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--header-height) + 2rem) var(--container-padding) 6rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+
+.contact-header {
+  max-width: 750px;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.contact-title {
+  font-family: var(--font-main);
+  font-size: clamp(2.5rem, 5.8vw, 4.2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.45),
+    0 0 40px rgba(0, 242, 254, 0.25);
+  line-height: 1.1;
+  user-select: none;
+}
+
+.contact-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.65;
+  max-width: 620px;
+  letter-spacing: 0.25px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.contact-email {
+  font-family: var(--font-main);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.6px;
+  margin-top: 0.6rem;
+  display: inline-block;
+  transition: color var(--transition-fast), text-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.contact-email:hover {
+  color: #ffffff;
+  text-shadow: 0 0 14px #ffffff, 0 0 25px rgba(0, 242, 254, 0.65);
+  transform: translateY(-1px);
+}
+
+/* Formulir Kotak Email Sesuai Wireframe Referensi */
+.contact-form {
+  width: 100%;
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-frame {
+  width: 100%;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  padding: clamp(1.5rem, 3.5vw, 2.25rem);
+  background: rgba(7, 2, 27, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 
+    0 16px 45px rgba(0, 0, 0, 0.45),
+    inset 0 0 25px rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.contact-frame:focus-within {
+  border-color: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
+}
+
+.form-group {
+  width: 100%;
+}
+
+/* Kotak Input Email */
+.contact-input {
+  width: 100%;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  padding: 0.85rem 1.15rem;
+  outline: none;
+  border-radius: 0;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
+}
+
+.contact-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+}
+
+/* Kotak Pesan Textarea */
+.contact-textarea {
+  width: 100%;
+  min-height: 180px;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  padding: 1rem 1.15rem;
+  outline: none;
+  resize: vertical;
+  line-height: 1.6;
+  border-radius: 0;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-textarea:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
+}
+
+.contact-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+/* Tombol Kirim di Bawah Kiri Sesuai Referensi */
+.form-action {
+  margin-top: 1.25rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contact-submit-btn {
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 0.55rem 2.2rem;
+  cursor: pointer;
+  border-radius: 0;
+  transition: all var(--transition-smooth);
+}
+
+.contact-submit-btn:hover {
+  background: #ffffff;
+  color: var(--bg-deep-space);
+  border-color: #ffffff;
+  box-shadow: 0 0 20px #ffffff;
+  transform: translateY(-2px);
+}
+
+/* 11. Placeholder Sections Untuk Navigasi Scroll */
+.content-section {
+  min-height: 80vh;
+  padding: 6rem var(--container-padding);
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-card {
+  background: rgba(14, 5, 38, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 3rem;
+  max-width: 900px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.section-title {
+  font-family: var(--font-main);
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.section-desc {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* 8. Keyframe Animations */
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes scrollDot {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+}
+
+/* 9. Responsive Mobile Breakpoints */
+@media screen and (max-width: 900px) {
+  :root {
+    --header-height: 75px;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .mobile-nav-toggle.open .hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-nav-toggle.open .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-nav-toggle.open .hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(78vw, 320px);
+    height: 100vh;
+    background: rgba(7, 2, 27, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 2.5rem;
+    gap: 2rem;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1050;
+  }
+
+  .nav-menu.nav-open {
+    right: 0;
+    box-shadow: -15px 0 35px rgba(0, 0, 0, 0.6);
+  }
+
+  .nav-link {
+    font-size: 1.25rem;
+  }
+
+  /* About section mobile adjustments */
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .about-avatar-box {
+    margin: 0 auto;
+    width: clamp(200px, 46vw, 270px);
+    height: clamp(200px, 46vw, 270px);
+  }
+
+  .about-text-content {
+    align-items: center;
+  }
+
+  /* Projects carousel mobile adjustments */
+  .carousel-btn {
+    display: none;
+  }
+
+  .projects-carousel {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .project-card {
+    flex: 0 0 clamp(220px, 72vw, 290px);
+  }
+
+  /* Journey mobile adjustments */
+  .journey-container {
+    gap: 1.5rem;
+  }
+
+  .journey-timeline-line {
+    margin-top: 1rem;
+    width: 2px;
+  }
+
+  .journey-sublist-wrapper {
+    margin-left: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  /* Aurora ribbons mobile scaling */
+  .aurora-ribbon-left {
+    top: -1%;
+    left: -4%;
+    width: clamp(280px, 80vw, 450px);
+  }
+  .aurora-ribbon-left-edge {
+    top: -2%;
+    left: -20%;
+    width: clamp(240px, 65vw, 380px);
+  }
+  .aurora-ribbon-right {
+    top: -2%;
+    right: -10%;
+    width: clamp(320px, 85vw, 500px);
+  }
+}

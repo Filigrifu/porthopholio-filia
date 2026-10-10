@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Fili - Cosmic Aurora personal portfolio with starry nebula and celestial aesthetics.">
+  <title>Fili | Portfolio</title>
+  
+  <!-- Google Fonts: Roboto Mono & Outfit (Modern Sans Fallback for Clother) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Cosmic Aurora & Starry Nebula Background -->
+  <div class="cosmic-background-wrapper" aria-hidden="true">
+    <div class="cosmic-nebula-image"></div>
+    <div class="aurora-ribbons-container">
+      <!-- Pita Aurora Kiri (Sudut Kiri Atas Sesuai Referensi) -->
+      <img src="assets/images/aurora-1.png" alt="" class="aurora-ribbon aurora-ribbon-left-edge">
+      <img src="assets/images/aurora-1.png" alt="" class="aurora-ribbon aurora-ribbon-left">
+
+      <!-- Pita Aurora Kanan (Sudut Kanan Atas Sesuai Referensi) -->
+      <img src="assets/images/aurora-2.png" alt="" class="aurora-ribbon aurora-ribbon-right">
+    </div>
+    <canvas id="starfield-canvas"></canvas>
+    <div class="cosmic-vignette"></div>
+  </div>
+
+  <!-- Header: Transparent Desktop Horizontal Navigation -->
+  <header class="site-header">
+    <a href="#home" class="logo">Fili</a>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <!-- Desktop Horizontal Navigation Menu -->
+    <nav class="navbar" aria-label="Main Navigation">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#home" class="nav-link active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#about" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="#projects" class="nav-link">Project</a>
+        </li>
+        <li class="nav-item">
+          <a href="#journey" class="nav-link">journey</a>
+        </li>
+        <li class="nav-item">
+          <a href="#CV" class="nav-link">CV</a>
+        </li>
+        <li class="nav-item">
+          <a href="#contact" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Bagian Pertama Website: Hero Section (WELCOME) -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">WELCOME</h1>
+        <p class="hero-subtitle">Fili's Portpholio</p>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to About">
+        <span class="scroll-indicator-icon"></span>
+        <span>EXPLORE</span>
+      </a>
+    </section>
+
+    <!-- Halaman / Section About Sesuai Referensi -->
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <!-- Square Avatar / Card Sesuai Referensi -->
+        <div class="about-avatar-box" role="img" aria-label="Avatar atau foto profil Fili"></div>
+
+        <!-- Bio Teks di Sisi Kanan -->
+        <div class="about-text-content">
+          <h2 class="about-name">Fili</h2>
+          <p class="about-bio">Hi, Aku desainer dari Jayapura! Aku tertarik dengan pemecahan masalah dalam komunikasi dan visual.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman / Section Projects: Cards Carousel Sesuai Referensi -->
+    <section id="projects" class="projects-section">
+      <div class="carousel-wrapper">
+        <!-- Tombol Carousel Kiri -->
+        <button class="carousel-btn carousel-btn-prev" id="projects-prev" aria-label="Geser ke proyek sebelumnya">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Track Carousel Kartu Proyek -->
+        <div class="projects-carousel" id="projects-carousel">
+          <!-- Card 01 -->
+          <article class="project-card">
+            <div class="project-card-image" role="img" aria-label="Gambar Project 01"></div>
+            <div class="project-card-info">
+              <h3 class="project-title">Project 01</h3>
+              <p class="project-subtitle">sub-title</p>
+              <p class="project-desc">description</p>
+            </div>
+          </article>
+
+          <!-- Card 02 -->
+          <article class="project-card">
+            <div class="project-card-image" role="img" aria-label="Gambar Project 02"></div>
+            <div class="project-card-info">
+              <h3 class="project-title">Project 01</h3>
+              <p class="project-subtitle">sub-title</p>
+              <p class="project-desc">description</p>
+            </div>
+          </article>
+
+          <!-- Card 03 -->
+          <article class="project-card">
+            <div class="project-card-image" role="img" aria-label="Gambar Project 03"></div>
+            <div class="project-card-info">
+              <h3 class="project-title">Project 01</h3>
+              <p class="project-subtitle">sub-title</p>
+              <p class="project-desc">description</p>
+            </div>
+          </article>
+
+          <!-- Card 04 -->
+          <article class="project-card">
+            <div class="project-card-image" role="img" aria-label="Gambar Project 04"></div>
+            <div class="project-card-info">
+              <h3 class="project-title">Project 01</h3>
+              <p class="project-subtitle">sub-title</p>
+              <p class="project-desc">description</p>
+            </div>
+          </article>
+
+          <!-- Card 05 -->
+          <article class="project-card">
+            <div class="project-card-image" role="img" aria-label="Gambar Project 05"></div>
+            <div class="project-card-info">
+              <h3 class="project-title">Project 01</h3>
+              <p class="project-subtitle">sub-title</p>
+              <p class="project-desc">description</p>
+            </div>
+          </article>
+
+          <!-- Card 06 -->
+          <article class="project-card">
+            <div class="project-card-image" role="img" aria-label="Gambar Project 06"></div>
+            <div class="project-card-info">
+              <h3 class="project-title">Project 01</h3>
+              <p class="project-subtitle">sub-title</p>
+              <p class="project-desc">description</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Tombol Carousel Kanan -->
+        <button class="carousel-btn carousel-btn-next" id="projects-next" aria-label="Geser ke proyek berikutnya">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Titik Indikator Pagination Carousel -->
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </section>
+
+    <!-- Halaman / Section Journey: Vertical Scroll Timeline Sesuai Referensi -->
+    <section id="journey" class="journey-section">
+      <div class="journey-container">
+        <!-- Garis Timeline Putih Berpendar di Sisi Kiri -->
+        <div class="journey-timeline-line" aria-hidden="true"></div>
+
+        <!-- Konten Milestone Perjalanan -->
+        <div class="journey-content">
+          <!-- Milestone 01: Graphic Design (UPH) -->
+          <article class="journey-milestone">
+            <span class="milestone-period">2023 - today</span>
+            <h2 class="milestone-title">Graphic Design</h2>
+            <p class="milestone-institute">UPH</p>
+            <p class="milestone-desc">
+              My journey into graphic design began as a new chapter in my creative practice, exploring art, branding, identity, typography, and visual in communication.
+            </p>
+
+            <!-- Sublist Proyek / Cabang Vertikal Indented -->
+            <div class="journey-sublist-wrapper">
+              <div class="journey-sublist-line" aria-hidden="true"></div>
+              <ul class="journey-sublist">
+                <li class="sublist-item">Book Design Project</li>
+                <li class="sublist-item">Social Media Team - Focal Point Exibition</li>
+                <li class="sublist-item">Re-Branding Project : Burgreens</li>
+                <li class="sublist-item">Branding Project: Snail-it</li>
+                <li class="sublist-item">Branding Project: Snail-it</li>
+                <li class="sublist-item">Book Design Project : Buku Cinta Tuhan</li>
+                <li class="sublist-item">Internship : SUNVisual</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Milestone 02: Apparel Design (SMKN1 - SPU) -->
+          <article class="journey-milestone">
+            <h2 class="milestone-title">Apparel Design</h2>
+            <p class="milestone-institute">SMKN1 - SPU</p>
+            <p class="milestone-desc">
+              My first encounter with design. Apparel Design was my first experience of design. It taught me to make design into reality.
+            </p>
+          </article>
+
+          <!-- Milestone 03: Christian Value (SKKK - PHLI) -->
+          <article class="journey-milestone">
+            <h2 class="milestone-title">Christian Value</h2>
+            <p class="milestone-institute">SKKK - PHLI</p>
+            <p class="milestone-desc">
+              Inspired me to become a designer with integrity, empathy, ethics and a desire to make an impactful design.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="CV" class="content-section">
+      <div class="section-card">
+        <h2 class="section-title">Curriculum Vitae</h2>
+        <p class="section-desc">Riwayat pendidikan, keahlian desain, dan pengalaman profesional.</p>
+      </div>
+    </section>
+
+    <!-- Halaman / Section Contact Sesuai Referensi -->
+    <section id="contact" class="contact-section">
+      <div class="contact-header">
+        <h2 class="contact-title">CONTACT ME!</h2>
+        <p class="contact-subtitle">
+          Whether it's a new project, a collaboration,<br>
+          or simply an idea worth sharing—
+        </p>
+        <a href="mailto:Frifurareany@gmail.com" class="contact-email">Frifurareany@gmail.com</a>
+      </div>
+
+      <!-- Kotak Formulir Email Sesuai Wireframe Referensi -->
+      <form class="contact-form" id="contact-form">
+        <div class="contact-frame">
+          <!-- Kotak Input Email -->
+          <div class="form-group">
+            <input 
+              type="email" 
+              name="email" 
+              id="user-email" 
+              class="contact-input" 
+              placeholder="Your email address..." 
+              required
+              aria-label="Email Anda"
+            >
+          </div>
+
+          <!-- Kotak Area Teks Pesan -->
+          <div class="form-group">
+            <textarea 
+              name="message" 
+              id="user-message" 
+              class="contact-textarea" 
+              placeholder="Write your message or idea here..." 
+              required
+              aria-label="Pesan Anda"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Tombol Kirim di Bagian Bawah Kiri Kotak Sesuai Referensi -->
+        <div class="form-action">
+          <button type="submit" class="contact-submit-btn" id="contact-submit-btn">SEND</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
